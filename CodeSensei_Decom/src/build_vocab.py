@@ -32,6 +32,13 @@ def build_vocab_pkl(config):
                         comment_token_dict[token] = 1
                     else:
                         comment_token_dict[token] += 1
+                        
+    with open(fr'./../EDA/{name}/code_dict.txt', 'w', encoding='utf-8') as f:
+        for word, idx in code_token_dict.items():
+            f.write(f"{word}\t{idx}\n")
+    with open(fr'./../EDA/{name}/comment_dict.txt', 'w', encoding='utf-8') as f:
+        for word, idx in comment_token_dict.items():
+            f.write(f"{word}\t{idx}\n")
 
     print("num_code_token:", len(code_token_dict), "num_comment_token:", len(comment_token_dict))
 
@@ -41,10 +48,18 @@ def build_vocab_pkl(config):
     comment_vocab = ["<PAD>", "<BOS>", "<EOS>", "<UNK>"] + comment_vocab
     print("num_code_vocab:", len(code_vocab), "num_comment_vocab:", len(comment_vocab))
 
-    code_word2id = {word: idx for idx, word in enumerate(code_vocab)}
-    code_id2word = {idx: word for idx, word in enumerate(code_vocab)}
-    comment_word2id = {word: idx for idx, word in enumerate(comment_vocab)}
-    comment_id2word = {idx: word for idx, word in enumerate(comment_vocab)}
+    code_word2id = {
+        word: idx for idx, word in enumerate(code_vocab)
+    }
+    code_id2word = {
+        idx: word for idx, word in enumerate(code_vocab)
+    }
+    comment_word2id = {
+        word: idx for idx, word in enumerate(comment_vocab)
+    }
+    comment_id2word = {
+        idx: word for idx, word in enumerate(comment_vocab)
+    }
 
     with open(fr'./../dataset/{name}/code.word2id', 'wb') as w:
         pickle.dump(code_word2id, w)
@@ -60,8 +75,19 @@ def build_vocab_pkl(config):
 
 
 if __name__ == '__main__':
-    jcsd_config = {'name': 'JCSD', 'code_vocab_size': 50000, 'comment_vocab_size': 50000,
-                   'max_code_len': 300, 'max_comment_len': 50}
-    pcsd_config = {'name': 'PCSD', 'code_vocab_size': 50000, 'comment_vocab_size': 50000,
-                   'max_code_len': 100, 'max_comment_len': 50}
+    jcsd_config = {
+        'name': 'JCSD', 
+        'code_vocab_size': 50000,
+        'comment_vocab_size': 50000,
+        'max_code_len': 300,
+        'max_comment_len': 50
+    }
+    pcsd_config = {
+        'name': 'PCSD',
+        'code_vocab_size': 50000,
+        'comment_vocab_size': 50000,
+        'max_code_len': 100,
+        'max_comment_len': 50
+    }
     build_vocab_pkl(pcsd_config)
+    build_vocab_pkl(jcsd_config)
