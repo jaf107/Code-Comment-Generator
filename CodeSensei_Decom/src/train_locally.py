@@ -251,7 +251,7 @@ if __name__ == '__main__':
                     with open(f'./../results/{config.dataset}/first_step_result.{ii}', 'w') as w:
                         for comment_list in comment_pred:
                             comment = ' '.join(comment_list)
-                            w.write(comment + '\n')
+                            w.write(comment.encode('utf-8') + b'\n')
 
             if e - last_improve >= 10:
                 print("No optimization for 10 epochs, auto-stopping and save model parameters")
