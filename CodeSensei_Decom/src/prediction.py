@@ -134,7 +134,8 @@ class Config(object):
 if __name__ == '__main__':
     jcsd_config = {'name': 'JCSD', 'max_code_len': 300, 'max_comment_len': 50, 'max_keywords_len': 30}
     pcsd_config = {'name': 'PCSD', 'max_code_len': 100, 'max_comment_len': 50, 'max_keywords_len': 30}
-    config = Config(jcsd_config)
+    # config = Config(jcsd_config)
+    config = Config(pcsd_config)
     cuda = torch.cuda.is_available() and config.cuda
     if cuda:
         print('Running on GPU')
@@ -166,7 +167,7 @@ if __name__ == '__main__':
           format(test_Bleu, test_Rouge, test_Meteor))
 
     for ii, comment_pred in enumerate(test_prediction.values()):
-        with open(f'./../results/{config.dataset}/beamSearch_result.{ii}', 'w') as w:
+        with open(f'./../results/{config.dataset}/beamSearch_result.{ii}', 'w', encoding='utf-8') as w:
             for comment_list in comment_pred:
                 comment = ' '.join(comment_list)
                 w.write(comment + '\n')

@@ -248,10 +248,11 @@ if __name__ == '__main__':
                 torch.save(model.state_dict(), f"./../saved_model/{config.dataset}/first_step_params.pkl")
                 # output the prediction of comments for test set
                 for ii, comment_pred in enumerate(valid_prediction.values()):
-                    with open(f'./../results/{config.dataset}/first_step_result.{ii}', 'w') as w:
+                    with open(f'./../results/{config.dataset}/first_step_result.{ii}', 'w', encoding='utf-8') as w:
                         for comment_list in comment_pred:
                             comment = ' '.join(comment_list)
-                            w.write(comment.encode('utf-8') + b'\n')
+                            w.write(comment + '\n')
+                            # w.write(comment.encode('utf-8') + b'\n')
 
             if e - last_improve >= 10:
                 print("No optimization for 10 epochs, auto-stopping and save model parameters")
