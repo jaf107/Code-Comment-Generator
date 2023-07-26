@@ -1,2 +1,9 @@
 
 *.ini
+
+CodeSensei_Decom/src/saved_model/
+CodeSensei_Decom/src/__pycache__/
+CodeSensei_Decom/src/eval/__pycache__/bleu.cpython-311.pyc
+CodeSensei_Decom/src/eval/__pycache__/rouge.cpython-311.pyc
+
+CodeSensei_Decom/saved_model/
