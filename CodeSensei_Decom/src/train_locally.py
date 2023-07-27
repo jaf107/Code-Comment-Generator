@@ -178,7 +178,7 @@ class Config(object):
         self.batch_size = 32
         self.max_iter_num = 3
         self.dropout = 0.2
-        self.epochs = 30
+        self.epochs = 50
         self.clipping_distance = 16
 
 
@@ -233,7 +233,7 @@ if __name__ == '__main__':
                                    optimizer_list, e, cuda, config.max_iter_num)
         print('epoch:{},train_loss:{},time:{}sec'.format(e + 1, train_loss, round(time.time() - start_time, 2)))
 
-        if (e + 1) % 3 == 0 or e >= 15:
+        if (e + 1) % 5 == 0 or e >= 25:
             # validation
             valid_bleu, valid_rouge, valid_meteor, valid_prediction = \
                 evaluate_model(model, test_loader, config.bos_token, config.comment_id2word, cuda, config.max_iter_num)
@@ -254,8 +254,8 @@ if __name__ == '__main__':
                             w.write(comment + '\n')
                             # w.write(comment.encode('utf-8') + b'\n')
 
-            if e - last_improve >= 10:
-                print("No optimization for 10 epochs, auto-stopping and save model parameters")
+            if e - last_improve >= 5:
+                print("No optimization for 5 epochs, auto-stopping and save model parameters")
                 break
 
     print("finish!!!")
