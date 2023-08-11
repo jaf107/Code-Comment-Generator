@@ -7,3 +7,6 @@ CodeSensei_Decom/src/eval/__pycache__/bleu.cpython-311.pyc
 CodeSensei_Decom/src/eval/__pycache__/rouge.cpython-311.pyc
 
 CodeSensei_Decom/saved_model/
+CodeSensei_Decom/src/eval/__pycache__/bleu.cpython-310.pyc
+.gitignore
+CodeSensei_Decom/src/eval/__pycache__/rouge.cpython-310.pyc

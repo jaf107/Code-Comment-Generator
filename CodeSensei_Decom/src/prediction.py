@@ -152,7 +152,6 @@ if __name__ == '__main__':
     print("load the best model parameters!")
     model.load_state_dict(torch.load(f"./../saved_model/{config.dataset}/second_step_params.pkl"))
 
-    # 模型装载至cuda
     if cuda:
         model.cuda()
 
